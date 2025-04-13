@@ -1,56 +1,12 @@
-
 <!DOCTYPE html>
-
 <html lang="sv">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ja.html</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&amp;family=Paytone+One&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com">
-let finalAvoidCount = 0;
-let finalButton = null;
-
-function showConfirmation() {
-    document.getElementById('confirmation-buttons').classList.remove('hidden');
-    randomizePosition(document.querySelectorAll('#confirmation-buttons button')[0]);
-}
-
-function nextStep(step) {
-    if (step === 1) {
-        document.querySelectorAll('#confirmation-buttons button')[0].classList.add('hidden');
-        let second = document.querySelectorAll('#confirmation-buttons button')[1];
-        second.classList.remove('hidden');
-        randomizePosition(second);
-    } else if (step === 2) {
-        document.querySelectorAll('#confirmation-buttons button')[1].classList.add('hidden');
-        finalButton = document.getElementById('final-button');
-        finalButton.classList.remove('hidden');
-        randomizePosition(finalButton);
-
-        // Lägg till hover-event för att undvika muspekare
-        finalButton.addEventListener('mouseenter', evadeMouse);
-    }
-}
-
-function evadeMouse() {
-    if (finalAvoidCount < 2) {
-        randomizePosition(finalButton);
-        finalAvoidCount++;
-    } else {
-        finalButton.removeEventListener('mouseenter', evadeMouse);
-    }
-}
-
-function randomizePosition(el) {
-    let top = Math.floor(Math.random() * 60) + 10; // 10% - 70%
-    let left = Math.floor(Math.random() * 60) + 10; // 10% - 70%
-    el.style.position = 'absolute';
-    el.style.top = top + '%';
-    el.style.left = left + '%';
-}
-</script>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ja.html</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Paytone+One&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
     body {
       font-family: 'Paytone One', sans-serif;
       background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
@@ -67,14 +23,87 @@ function randomizePosition(el) {
   </style>
 </head>
 <body class="flex items-center justify-center min-h-screen bg-black bg-opacity-60">
-<div class="text-center px-4" style=" color: #25323A;">
-<h1 class="text-xl sm:text-2xl text-[#25323A] leading-relaxed" style=" color: #25323A;">
-      Är det så pass viktigt att du behöver störa Patrik på hans semester?
+  <div class="text-center px-4">
+    <h1 class="text-xl sm:text-2xl text-white leading-relaxed">
+      <span id="main-question" class="text-2xl font-bold text-[#25323A]">Är det så pass viktigt att du behöver störa Patrik på hans semester?</span>
     </h1>
-<div class="mt-6" style=" color: #25323A;">
-<a class="btn bg-[#F24162] px-6 py-3 rounded-lg hover:bg-[#EEA630] transition text-white" href="stort.html" style="">Ja</a>
-<a class="btn bg-[#1B8B8F] px-6 py-3 rounded-lg hover:bg-[#25323A] transition text-white" href="mailto:helpdesk@team8.se" style="">Nej</a>
-</div>
-</div>
+    <div class="mt-6">
+        <div id="main-buttons" class="space-x-4">
+          <button onclick="showConfirmation()" class="bg-[#F24162] text-white px-6 py-3 rounded-lg hover:bg-[#EEA630] transition">Ja</button>
+          <a href="mailto:helpdesk@team8.se" class="bg-[#1B8B8F] text-white px-6 py-3 rounded-lg hover:bg-[#25323A] transition">Nej</a>
+        </div>
+
+        <div id="confirmation-block" class="absolute hidden">
+          <p id="question-text" class="text-xl font-bold text-[#25323A] mb-4">Är du säker?</p>
+          <div class="space-x-4">
+            <button onclick="handleResponse(true)" class="bg-[#F24162] text-white px-6 py-3 rounded-lg hover:bg-[#EEA630] transition">Ja</button>
+            <button onclick="handleResponse(false)" class="bg-[#1B8B8F] text-white px-6 py-3 rounded-lg hover:bg-[#25323A] transition">Nej</button>
+          </div>
+        </div>
+        </div>
+  </div>
+  
+<script>
+let questionStep = 0;
+let evadeCount = 0;
+const questions = [
+  "Är du säker?",
+  "Är du helt säker?",
+  "Alltså verkligen 100% säker?"
+];
+
+function showConfirmation() {
+  const main = document.getElementById('main-question');
+  const mainButtons = document.getElementById('main-buttons');
+  if (main) main.remove();
+  if (mainButtons) mainButtons.remove();
+
+  const block = document.getElementById('confirmation-block');
+  block.classList.remove('hidden');
+  updateQuestion();
+  attachHoverEvade();
+}
+
+function handleResponse(isYes) {
+  if (!isYes) {
+    window.location.href = 'mailto:helpdesk@team8.se';
+    return;
+  }
+  questionStep++;
+  evadeCount = 0;
+  if (questionStep >= questions.length) {
+    window.location.href = 'stort.html';
+  } else {
+    updateQuestion();
+  }
+}
+
+function updateQuestion() {
+  const block = document.getElementById('confirmation-block');
+  const questionText = document.getElementById('question-text');
+  questionText.innerText = questions[questionStep];
+  questionText.style.color = '#25323A';
+  randomizePosition(block);
+}
+
+function randomizePosition(el) {
+  let top = Math.floor(Math.random() * 60) + 10;
+  let left = Math.floor(Math.random() * 60) + 10;
+  el.style.position = 'absolute';
+  el.style.top = top + '%';
+  el.style.left = left + '%';
+}
+
+function attachHoverEvade() {
+  const block = document.getElementById('confirmation-block');
+  block.addEventListener('mouseenter', () => {
+    if (questionStep === 2 && evadeCount < 4) {
+      updateQuestion();
+      evadeCount++;
+    }
+  });
+}
+</script>
+
 </body>
 </html>
