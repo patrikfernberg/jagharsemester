@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>index.html</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Paytone+One&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Paytone One', sans-serif;
+      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+      background-size: cover;
+      background-position: center;
+    }
+    .question {
+      font-family: 'Paytone One', sans-serif;
+      color: #25323A;
+    }
+    .btn {
+      font-family: 'Manrope', sans-serif;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-black bg-opacity-60">
+  <div class="text-center px-4">
+    <h1 class="text-xl sm:text-2xl text-white leading-relaxed">
+      Försöker du komma i kontakt med Patrik?
+    </h1>
+    <div class="mt-6">
+    <a href='ja.html' class='btn bg-[#F24162] text-white px-6 py-3 rounded-lg hover:bg-[#EEA630] transition'>Ja</a>
+    <a href='nej.html' class='btn bg-[#1B8B8F] text-white px-6 py-3 rounded-lg hover:bg-[#25323A] transition'>Nej</a>
+    </div>
+  </div>
+  
+    <script>
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get('email');
+    if (email) {
+      localStorage.setItem('visitorEmail', email);
+    }
+    </script>
+    
+</body>
+</html>
