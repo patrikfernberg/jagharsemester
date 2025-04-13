@@ -1,45 +1,209 @@
-
 <!DOCTYPE html>
-
 <html lang="sv">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>index.html</title>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&amp;family=Paytone+One&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Jag Har Semester</title>
+  <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Manrope:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
     body {
-      font-family: 'Paytone One', sans-serif;
-      background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
-      background-size: cover;
-      background-position: center;
-    }
-    .question {
-      font-family: 'Paytone One', sans-serif;
-      color: #25323A;
-    }
-    .btn {
       font-family: 'Manrope', sans-serif;
+      background: #25323A;
+      color: #25323A;
+      margin: 0;
+      padding: 0;
+    }
+    h1, h2 {
+      font-family: 'Paytone One', sans-serif;
+    }
+    .header {
+      width: 100%;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .header h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    @media (min-width: 640px) {
+      .header h1 {
+        font-size: 3.75rem;
+      }
+    }
+    .header p {
+      font-size: 1.125rem;
+    }
+    .main-container {
+      max-width: 1024px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .section {
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .section-title {
+      font-size: 1.875rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .section-title {
+        font-size: 2.25rem;
+      }
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      font-size: 1.125rem;
+      color: white;
+      background-color: #F24162;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .button:hover {
+      background-color: #EEA630;
+    }
+    .button-secondary {
+      background-color: #1B8B8F;
+    }
+    .button-secondary:hover {
+      background-color: #25323A;
+    }
+    .button-small {
+      padding: 0.5rem 1.5rem;
+      font-size: 1rem;
+    }
+    .package-container {
+      display: grid;
+      gap: 2rem;
+      max-width: 1344px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .package-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .package-card {
+      background-color: white;
+      color: #25323A;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+    .package-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .package-description {
+      margin-bottom: 1rem;
+    }
+    .package-button {
+      display: inline-block;
+      background-color: #EEA630;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+    .package-button:hover {
+      background-color: #F24162;
+    }
+    .sponsor-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 0 1.5rem;
+    }
+    .sponsor-image {
+      height: 3rem;
+    }
+    .footer {
+      background-color: #25323A;
+      color: white;
+      text-align: center;
+      padding: 1.5rem 0;
+      font-size: 0.875rem;
+      margin-top: 5rem;
     }
   </style>
 </head>
-<body class="flex items-center justify-center min-h-screen bg-black bg-opacity-60">
-<div class="text-center px-4" style=" color: #25323A;">
-<h1 class="text-xl sm:text-2xl text-[#25323A] leading-relaxed" style=" color: #25323A;">
-      Försöker du komma i kontakt med Patrik?
-    </h1>
-<div class="mt-6" style=" color: #25323A;">
-<a class="btn bg-[#F24162] px-6 py-3 rounded-lg hover:bg-[#EEA630] transition text-white" href="ja.html" style="">Ja</a>
-<a class="btn bg-[#1B8B8F] px-6 py-3 rounded-lg hover:bg-[#25323A] transition text-white" href="nej.html" style="">Nej</a>
-</div>
-</div>
-<script>
-    const params = new URLSearchParams(window.location.search);
-    const email = params.get('email');
-    if (email) {
-      localStorage.setItem('visitorEmail', email);
-    }
-    </script>
+<body>
+  <header class="header">
+    <h1>Patrik Har Semester!!</h1>
+    <p>...och det firar vi med solsken, siesta och semesterpaket ☀️</p>
+  </header>
+
+  <section class="section">
+    <div class="main-container">
+      <h2 class="section-title" style="color: white;">Vill du kontakta Patrik?</h2>
+      <div class="button-container">
+        <a class="button" href="#kontakt">Ja</a>
+        <a class="button button-secondary" href="#hejdå">Nej</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontakt" style="background-color: white;">
+    <div class="main-container">
+      <h2 class="section-title">Är det bråttom?</h2>
+      <p style="margin-bottom: 1.5rem;">Patrik kollar sin mail ungefär en gång om dagen (eller när solen går i moln). Om det är riktigt akut kan du ringa – annars får du ha lite is i magen.</p>
+      <a class="button" href="mailto:helpdesk@team8.se">Maila Helpdesk</a>
+    </div>
+  </section>
+
+  <section class="section" style="background-color: #25323A; color: white;">
+    <h2 class="section-title" style="color:white;">Semesterpaket - Hur mycket hjälp behöver du?</h2>
+    <div class="package-container">
+      <div class="package-card" style="text-align: center;">
+        <h3 class="package-title">"Expresshjälp"</h3>
+        <p class="package-description">Snabb support för små kriser. Perfekt för att släcka mindre bränder innan min drink hinner ta slut.</p>
+        <a class="package-button" href="express-hjalp.html">15 minuter</a>
+      </div>
+      <div class="package-card" style="text-align: center;">
+        <h3 class="package-title">"Lunchpaus-support"</h3>
+        <p class="package-description">Lagom med tid för att lösa mer komplexa problem. Du hinner både få hjälp och jag en ordentlig siesta efteråt.</p>
+        <a class="package-button" href="lunchpaus-support.html">1 timme</a>
+      </div>
+      <div class="package-card" style="text-align: center;">
+        <h3 class="package-title">"Semesteravbrott Deluxe"</h3>
+        <p class="package-description">För när katastrofen är ett faktum. Patrik lämnar stranden, sköljer av sanden och dedikerar en halv arbetsdag åt ditt problem.</p>
+        <a class="package-button" href="semester-avbrott-deluxe.html">4 timmar</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="hejdå" style="background-color: #F7F9F9;">
+    <div class="main-container">
+      <h2 class="section-title">Patrik tackar dig! ❤️</h2>
+      <p>Njut av livet du med – kanske boka in en siesta, ett dopp eller en fruktig drink?</p>
+    </div>
+  </section>
+
+  <section class="section" style="background-color: white;">
+    <h2 class="section-title">Stolta sponsorer av Patriks semester:</h2>
+    <div class="sponsor-container">
+      <img alt="Team8" class="sponsor-image" src="icon_rosa.png" />
+      <img alt="Team8" class="sponsor-image" src="san_miguel.png" />
+      <img alt="Team8" class="sponsor-image" src="aik.png" />
+    </div>
+  </section>
+
+  <footer class="footer">
+    © 2024 JagHarSemester.se | Kodad med sand mellan tårna 🏖️
+  </footer>
 </body>
 </html>
