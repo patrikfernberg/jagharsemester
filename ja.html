@@ -1,13 +1,56 @@
 
 <!DOCTYPE html>
+
 <html lang="sv">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ja.html</title>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Paytone+One&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ja.html</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&amp;family=Paytone+One&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com">
+let finalAvoidCount = 0;
+let finalButton = null;
+
+function showConfirmation() {
+    document.getElementById('confirmation-buttons').classList.remove('hidden');
+    randomizePosition(document.querySelectorAll('#confirmation-buttons button')[0]);
+}
+
+function nextStep(step) {
+    if (step === 1) {
+        document.querySelectorAll('#confirmation-buttons button')[0].classList.add('hidden');
+        let second = document.querySelectorAll('#confirmation-buttons button')[1];
+        second.classList.remove('hidden');
+        randomizePosition(second);
+    } else if (step === 2) {
+        document.querySelectorAll('#confirmation-buttons button')[1].classList.add('hidden');
+        finalButton = document.getElementById('final-button');
+        finalButton.classList.remove('hidden');
+        randomizePosition(finalButton);
+
+        // Lägg till hover-event för att undvika muspekare
+        finalButton.addEventListener('mouseenter', evadeMouse);
+    }
+}
+
+function evadeMouse() {
+    if (finalAvoidCount < 2) {
+        randomizePosition(finalButton);
+        finalAvoidCount++;
+    } else {
+        finalButton.removeEventListener('mouseenter', evadeMouse);
+    }
+}
+
+function randomizePosition(el) {
+    let top = Math.floor(Math.random() * 60) + 10; // 10% - 70%
+    let left = Math.floor(Math.random() * 60) + 10; // 10% - 70%
+    el.style.position = 'absolute';
+    el.style.top = top + '%';
+    el.style.left = left + '%';
+}
+</script>
+<style>
     body {
       font-family: 'Paytone One', sans-serif;
       background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
@@ -24,15 +67,14 @@
   </style>
 </head>
 <body class="flex items-center justify-center min-h-screen bg-black bg-opacity-60">
-  <div class="text-center px-4">
-    <h1 class="text-xl sm:text-2xl text-white leading-relaxed">
+<div class="text-center px-4" style=" color: #25323A;">
+<h1 class="text-xl sm:text-2xl text-[#25323A] leading-relaxed" style=" color: #25323A;">
       Är det så pass viktigt att du behöver störa Patrik på hans semester?
     </h1>
-    <div class="mt-6">
-    <a href='stort.html' class='btn bg-[#F24162] text-white px-6 py-3 rounded-lg hover:bg-[#EEA630] transition'>Ja</a>
-    <a href='mailto:helpdesk@team8.se' class='btn bg-[#1B8B8F] text-white px-6 py-3 rounded-lg hover:bg-[#25323A] transition'>Nej</a>
-    </div>
-  </div>
-  
+<div class="mt-6" style=" color: #25323A;">
+<a class="btn bg-[#F24162] px-6 py-3 rounded-lg hover:bg-[#EEA630] transition text-white" href="stort.html" style="">Ja</a>
+<a class="btn bg-[#1B8B8F] px-6 py-3 rounded-lg hover:bg-[#25323A] transition text-white" href="mailto:helpdesk@team8.se" style="">Nej</a>
+</div>
+</div>
 </body>
 </html>
